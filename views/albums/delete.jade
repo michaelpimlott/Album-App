@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  h1 Are you sure you want to delete it
+
+  form(action="/albums/" + theAlbum.id + "/?_method=DELETE", method="POST")
+    div
+      input(type="submit" value="Delete Album")
+      a(href="/albums/") cancel
