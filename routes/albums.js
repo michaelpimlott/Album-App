@@ -12,6 +12,12 @@ router.get('/albums', function(req, res, next) {
   });
 });
 
+router.get('/albums/:id', function(req, res, next) {
+  Albums().where({id: req.params.id}).first().then(function(record){
+    res.render('albums/show', {theAlbum: record});
+  });
+});
+
 router.get('/albums/new', function(req, res, next) {
   res.render('albums/new');
 });
@@ -25,6 +31,12 @@ router.post('/albums', function(req, res, next) {
     explicit: req.body.explicit
   }).then(function() {
       res.redirect('/albums');
+  });
+});
+
+router.get('/albums/:id/edit', function(req, res, next){
+  Albums().where({ id: req.params.id}).first().then(function(record){
+    res.render('albums/edit', {theAlbum: record, options: genreOptions});
   });
 });
 module.exports = router;
