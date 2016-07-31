@@ -1,12 +1,38 @@
 extends ../layout
 
 block content
-  h1 New Album
+  h1 Create Album
 
   form(action="/albums", method="post")
     div
-      Name
+      label(for="artist_name") Artist:
+      input(type="text" name="artist_name")
+
+    div
+      label(for="album_name") Album:
       input(type="text" name="album_name")
 
     div
-      input(type="submit")
+      label(for="genre") Genre:
+      select(name="genre")
+        option(value="Dog" selected="Dog") Dog
+        option(value="Jazz" selected="Jazz") Jazz
+        option(value="Vaporwave" selected="Vaporwave") Vaporwave
+
+    div
+      label(for="stars") Stars:
+      | 1
+      input(type="radio" name="stars" value="1")
+      input(type="radio" name="stars" value="2")
+      input(type="radio" name="stars" value="3")
+      input(type="radio" name="stars" value="4")
+      input(type="radio" name="stars" value="5")
+      | 5
+
+    div
+      input(type="checkbox" name="explicit")
+      | Contains Explicit Lyrics
+
+    div
+      input(type="submit" value="Create Album")
+      a(href="/albums/") cancel

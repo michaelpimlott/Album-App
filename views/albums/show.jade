@@ -1,8 +1,22 @@
 extends ../layout
 
 block content
-  h1= theAlbum.name
+  h1 Artist: #{theAlbum.artist}
+  h1 Album: #{theAlbum.name}
+  h1 Genre: #{theAlbum.genre}
+  h1 Rating: #{theAlbum.stars} stars
+  if(theAlbum.explicit === true)
+    h2 Contains explicit lyrics
 
-  a(href="/albums/" + theAlbum.id + '/edit') Edit
-  
+  form(action="/edit", method="post")
+    div
+      a(href="/albums/" + theAlbum.id + "/edit") Edit
+
+  form(action="/delete", method="post")
+    div
+      a(href="/albums/" + theAlbum.id + "/delete") Delete
+
+  form(action="/", method="get")
+    div
+      a(href="/albums/") Back
           
